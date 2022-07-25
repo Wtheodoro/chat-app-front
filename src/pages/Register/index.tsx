@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer, ToastOptions } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -31,6 +31,10 @@ const Register: React.FC = () => {
     draggable: true,
     theme: 'dark',
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('@chat-app-user')) navigate('/')
+  }, [])
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
