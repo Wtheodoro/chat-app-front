@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer, ToastOptions } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -6,6 +6,7 @@ import { FormContainter } from './styles'
 import Logo from '../../assets/logo.svg'
 import axios from 'axios'
 import { RegisterRoute } from '../../utils/APIRoutes'
+import { useAuth } from '../../hooks/auth'
 
 interface IFormValues {
   username: string
@@ -16,6 +17,7 @@ interface IFormValues {
 
 const Register: React.FC = () => {
   const navigate = useNavigate()
+  const { signIn } = useAuth()
 
   const [formValues, setFormValues] = useState<IFormValues>({
     username: '',
@@ -32,10 +34,6 @@ const Register: React.FC = () => {
     theme: 'dark',
   }
 
-  useEffect(() => {
-    if (localStorage.getItem('@chat-app-user')) navigate('/')
-  }, [])
-
   const handleSubmit = async (event: any) => {
     event.preventDefault()
     if (formValidation()) {
@@ -49,7 +47,7 @@ const Register: React.FC = () => {
       if (data.status === false) toast.error(data.msg, toastErrorOptions)
 
       if (data.status === true) {
-        localStorage.setItem('@chat-app-user', JSON.stringify(data.user))
+        signIn(JSON.stringify(data.user))
         navigate('/')
       }
     }
@@ -124,7 +122,7 @@ const Register: React.FC = () => {
 
           <button type='submit'>Create User</button>
           <span>
-            Already have an account? <Link to='/login'>Login</Link>
+            Already have an account? <Link to='/'>Login</Link>
           </span>
         </form>
       </FormContainter>

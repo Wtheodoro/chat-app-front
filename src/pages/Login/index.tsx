@@ -6,6 +6,7 @@ import { FormContainter } from './styles'
 import Logo from '../../assets/logo.svg'
 import axios from 'axios'
 import { LoginRoute } from '../../utils/APIRoutes'
+import { useAuth } from '../../hooks/auth'
 
 interface IFormValues {
   username: string
@@ -14,6 +15,7 @@ interface IFormValues {
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
+  const { signIn } = useAuth()
 
   const [formValues, setFormValues] = useState<IFormValues>({
     username: '',
@@ -44,8 +46,7 @@ const Login: React.FC = () => {
       if (data.status === false) toast.error(data.msg, toastErrorOptions)
 
       if (data.status === true) {
-        localStorage.setItem('@chat-app-user', JSON.stringify(data.user))
-        navigate('/')
+        signIn(JSON.stringify(data.user))
       }
     }
   }

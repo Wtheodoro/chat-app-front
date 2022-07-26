@@ -19,14 +19,14 @@ const Chat: React.FC = () => {
     setCurrentUser(JSON.parse(userStringfyed))
   }, [])
 
-  useEffect(() => {
-    if (!currentUser.isAvatarImageSet) return navigate('/chooseAvatar')
+  // useEffect(() => {
+  //   if (!currentUser.isAvatarImageSet) return navigate('/chooseAvatar')
 
-    const fetchContacts = async () => {
-      const data: any = await axios.get(`${allUsersRoute}/${currentUser._id}`)
-      setContacts(data)
-    }
-  }, [])
+  //   const fetchContacts = async () => {
+  //     const data: any = await axios.get(`${allUsersRoute}/${currentUser._id}`)
+  //     setContacts(data)
+  //   }
+  // }, [])
 
   return (
     <Container>

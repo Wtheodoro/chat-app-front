@@ -68,10 +68,6 @@ const ChooseAvatar = () => {
     fetchAvatarImage()
   }, [avatars])
 
-  useEffect(() => {
-    if (!localStorage.getItem('@chat-app-user')) navigate('/login')
-  }, [])
-
   return (
     <>
       {isLoading ? (
