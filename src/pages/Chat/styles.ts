@@ -6,14 +6,14 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   gap: 1rem;
-  background: #131324;
+  align-items: center;
+  background-color: #131324;
 
   .wrapper {
     height: 85vh;
     width: 85vw;
-    background: #00000076;
+    background-color: #00000076;
     display: grid;
     grid-template-columns: 25% 75%;
 
