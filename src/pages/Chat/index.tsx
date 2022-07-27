@@ -2,12 +2,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Contacts from '../../components/Contacts'
+import Welcome from '../../components/Welcome'
 import { allUsersRoute } from '../../utils/APIRoutes'
 import { Container } from './styles'
 
 const Chat: React.FC = () => {
   const [contacts, setContacts] = useState<any[]>([])
   const [currentUser, setCurrentUser] = useState<any>()
+  const [currentChat, setCurrentChat] = useState<any>()
 
   const navigate = useNavigate()
 
@@ -34,14 +36,25 @@ const Chat: React.FC = () => {
     fetchContacts()
   }, [currentUser])
 
+  const handleChatChage = (chat: any) => {
+    setCurrentChat(chat)
+  }
+
   return (
     <Container>
       <div className='wrapper'>
         <Contacts
           contacts={contacts}
           currentUser={currentUser}
-          changeChat={() => {}}
+          changeChat={handleChatChage}
         />
+        {currentChat === undefined ? (
+          <Welcome />
+        ) : (
+          <Welcome />
+
+          // <ChatContainer currentChat={currentChat} socket={socket} />
+        )}
       </div>
     </Container>
   )
