@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ChatContainer from '../../components/ChatContainer'
 import Contacts from '../../components/Contacts'
 import Welcome from '../../components/Welcome'
 import { allUsersRoute } from '../../utils/APIRoutes'
@@ -51,7 +52,7 @@ const Chat: React.FC = () => {
         {currentChat === undefined ? (
           <Welcome />
         ) : (
-          <Welcome />
+          <ChatContainer currentChat={currentChat} />
 
           // <ChatContainer currentChat={currentChat} socket={socket} />
         )}
