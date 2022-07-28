@@ -16,17 +16,15 @@ const ChatInput: React.FC<IChatInput> = ({ handleSendMessage }) => {
   }
 
   const handleEmojiClick = (event: any, emojiObject: any) => {
-    let message = msg
-    message += emojiObject.emoji
-    setMsg(message)
+    setMsg(`${msg}${emojiObject.emoji}`)
   }
 
   const sendChat = (event: any) => {
     event.preventDefault()
-    if (msg.length > 0) {
-      handleSendMessage(msg)
-      setMsg('')
-    }
+    if (!msg) return
+
+    handleSendMessage(msg)
+    setMsg('')
   }
 
   return (
@@ -41,7 +39,7 @@ const ChatInput: React.FC<IChatInput> = ({ handleSendMessage }) => {
         <input
           type='text'
           placeholder='type your message here'
-          onChange={(e) => setMsg(e.target.value)}
+          onChange={(event) => setMsg(event.target.value)}
           value={msg}
         />
         <button type='submit'>

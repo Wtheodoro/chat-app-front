@@ -52,7 +52,7 @@ const Chat: React.FC = () => {
         {currentChat === undefined ? (
           <Welcome />
         ) : (
-          <ChatContainer currentChat={currentChat} />
+          <ChatContainer currentChat={currentChat} currentUser={currentUser} />
 
           // <ChatContainer currentChat={currentChat} socket={socket} />
         )}
