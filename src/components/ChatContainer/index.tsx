@@ -1,4 +1,5 @@
 import React from 'react'
+import ChatInput from '../ChatInput'
 import Logout from '../Logout'
 import { Container } from './styles'
 
@@ -7,6 +8,8 @@ interface IChatContainer {
 }
 
 const ChatContainer: React.FC<IChatContainer> = ({ currentChat }) => {
+  const handleSendMessage = async (message: string) => {}
+
   return (
     <Container>
       <div className='chat-header'>
@@ -21,6 +24,7 @@ const ChatContainer: React.FC<IChatContainer> = ({ currentChat }) => {
         </div>
         <Logout />
       </div>
+      <ChatInput handleSendMessage={handleSendMessage} />
     </Container>
   )
 }
