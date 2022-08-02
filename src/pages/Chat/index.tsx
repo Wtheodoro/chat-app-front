@@ -9,12 +9,12 @@ import { Container } from './styles'
 import { io } from 'socket.io-client'
 
 const Chat: React.FC = () => {
+  const navigate = useNavigate()
+  const socket: any = useRef()
+
   const [contacts, setContacts] = useState<any[]>([])
   const [currentUser, setCurrentUser] = useState<any>()
   const [currentChat, setCurrentChat] = useState<any>()
-
-  const navigate = useNavigate()
-  const socket: any = useRef()
 
   useEffect(() => {
     const userStringfyed = localStorage.getItem('@chat-app-user')
