@@ -25,7 +25,7 @@ const Chat: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    if (!currentUser) return
+    if (!currentUser || !host) return
 
     socket.current = io(host)
     socket.current.emit('add-user', currentUser._id)
